@@ -9,7 +9,7 @@ export async function parseArgs(...argConfigs: Argument[]): Promise<(string | an
     if (config === 'file' || config.type === 'file') {
       const fileData = (await fs.readFile(args[i])).toString();
       if (typeof config === 'object' && config.lineParser) {
-        const lines = fileData.split('\n');
+        const lines = fileData.split(/\r?\n/);
         if (!lines[lines.length - 1]) {
           // Remove last line if it is empty
           lines.splice(lines.length - 1, 1);
