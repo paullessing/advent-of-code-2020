@@ -1,7 +1,7 @@
 import { parseArgs } from './util/parse-args';
 
 (async function main() {
-  const [entries] = await parseArgs({ type: 'lines', lineParser: (line) => parseInt(line, 10) }) as [number[]];
+  const [entries] = await parseArgs({ type: 'file', lineParser: (line) => parseInt(line, 10) }) as [number[]];
 
   const array: boolean[] = [];
 

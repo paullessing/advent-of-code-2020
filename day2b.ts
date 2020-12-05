@@ -8,7 +8,7 @@ interface Input {
 }
 
 (async function main() {
-  const [entries] = await parseArgs({ type: 'file', lineParser: (line): Input => {
+  const [entries] = await parseArgs({ type: 'lines', lineParser: (line): Input => {
     const match = line.match(/^(\d+)-(\d+) ([a-z]): (.*)$/i);
     if (!match) {
       console.log(`Could not parse line: ${JSON.stringify(line)}`);
