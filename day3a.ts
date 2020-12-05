@@ -1,23 +1,23 @@
 import { parseArgs } from './util/parse-args';
 
 (async function main() {
-  const [entries] = await parseArgs({ type: 'file', lineParser: (line) => parseInt(line, 10) }) as [number[]];
+  const [rows, right, down] = await parseArgs('lines', 'int', 'int') as [string[], number, number];
 
-  const array: boolean[] = [];
+  let currentRow = 0;
+  let currentCol = 0;
 
-  for (const x of entries) {
-    if (x > 2020) {
-      continue;
+  let hit = 0;
+
+  while (currentRow < rows.length) {
+    const row = rows[currentRow];
+    if (row[currentCol % row.length] === '#') {
+      hit++;
     }
-    const inverse = 2020 - x;
-    if (array[inverse]) {
-      console.log(`${x} * ${inverse} = ${x * inverse}`);
-      process.exit(0);
-      break;
-    }
-    array[x] = true;
+
+    currentRow += down;
+    currentCol += right;
   }
 
-  console.log('Not found.');
-  process.exit(1);
+  console.log(`Trees hit: ${hit}`);
+  process.exit(0);
 })()
