@@ -1,15 +1,22 @@
 import { parseArgs } from './util/parse-args';
 
-function convertBinaryToNumeric(value: string): number {
-  const binary = value.replace(/[BR]/gi, '1').replace(/[FL]/gi, '0');
-  return parseInt(binary, 2);
-}
-
 (async function main() {
-  const [lines] = await parseArgs({ type: 'lines', lineParser: convertBinaryToNumeric }) as [number[]];
+  const [lines] = await parseArgs({ type: 'lines', lineParser: (line) => line.trim().length ? line.split('') : null }) as [(string[] | null)[]];
 
-  const maxSeatId = Math.max.apply(null, lines);
+  let total = 0;
+  let currentSet = new Set();
+  for (const line of lines) {
+    if (!line) {
+      total += currentSet.size;
+      currentSet = new Set();
+      continue;
+    }
 
-  console.log(`Maximum Seat ID: ${maxSeatId}`);
-  process.exit(0);
+    for (const char of line) {
+      currentSet.add(char);
+    }
+  }
+  total += currentSet.size;
+
+  console.log(`Total: ${total}`);
 })();
