@@ -91,4 +91,5 @@ const SHINY_GOLD: BagType = 'shiny gold' as BagType;
   const bagsWhichCanHoldShinyGold = Array.from(rules.keys()).filter(canHold);
 
   console.log(`Total: ${bagsWhichCanHoldShinyGold.length} bags which can hold a ${SHINY_GOLD} bag`);
+  process.exit(0);
 })();

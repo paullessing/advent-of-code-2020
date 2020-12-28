@@ -93,4 +93,5 @@ const SHINY_GOLD: BagType = 'shiny gold' as BagType;
   const bagsRequired = getRequiredNestedBags(SHINY_GOLD) - 1; // Not the outer bag
 
   console.log(`Total: ${bagsRequired} bags required inside a ${SHINY_GOLD} bag`);
+  process.exit(0);
 })();

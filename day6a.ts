@@ -19,4 +19,5 @@ import { parseArgs } from './util/parse-args';
   total += currentSet.size;
 
   console.log(`Total: ${total}`);
+  process.exit(0);
 })();

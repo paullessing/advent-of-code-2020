@@ -21,6 +21,7 @@ import { parseArgs } from './util/parse-args';
   total += currentSet && currentSet.size || 0;
 
   console.log(`Total: ${total}`);
+  process.exit(0);
 })();
 
 function union<T>(values: T[], set: Set<T>): Set<T> {
